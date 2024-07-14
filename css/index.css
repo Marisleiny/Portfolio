@@ -3,6 +3,7 @@
     --color-negro: #000;
     --color-blanco: #fff;
     --color-rojo: #FF1D1D;
+    --color-efecto-smoky: 
 }
 
 /* Reset */
@@ -110,7 +111,7 @@ a {
     font-style: normal;
     font-size: 1rem;
 
-    color: white;
+    color: var(--color-blanco);
 }
 
 .link {
@@ -118,7 +119,7 @@ a {
     font-optical-sizing: auto;
     font-weight: 600;
     font-style: italic;
-    font-size: 1.125rem;
+    font-size: 1rem;
 
     color: var(--color-blanco);
     cursor: pointer;
@@ -141,35 +142,53 @@ body {
 }
 
 .header__logo, .footer__container__logo {
-    width: 120px;
+    min-width: 100px;
 }
 
 .header__menu__ul {
     display: flex;
-    gap: 1em;
+    gap: .5em;
+}
+
+.header__menu__ul__li__a:hover {
+    border-bottom: solid 2px var(--color-rojo);
 }
 
 .header__socialmedia {
     display: flex;
-    gap: .5em;
+    gap: .3em;
 }
 
 .header__hamburguesa {
     display: none;
 }
 
-/* Media query para el menu hamburguesa de tablet y mobile */
-@media (max-width: 720px) {
-    .header__menu {
-        display: none;
-    }
-    .header__socialmedia {
-        display: none;
-    }
+.menu {
+    position: fixed;
+    top: 0;
+    z-index: 2;
 
-    .header__hamburguesa {
-        display: flex;
-    }
+    padding: .5em;
+    margin: 0 auto;
+}
+
+.menu::before {
+    content: "";
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+}
+
+.menu .header__menu__ul__li__a {
+    font-weight: 400;
+    color: #636363;
 }
 
 /* Popup con el menu para responsive */
@@ -181,6 +200,7 @@ body {
     height: 100vh;
     position: fixed;
     top: 0;
+    z-index: 3;
 
     background-color: rgba(255, 255, 255, 0.5);
 }
@@ -195,7 +215,7 @@ body {
     position: relative;
 
     background-color: var(--color-negro);
-    width: 50vw;
+    width: 60vw;
     height: 50vh;
 }
 
@@ -207,14 +227,14 @@ body {
 }
 
 .overlay__popup__nav__ul__li:hover {
-    transform: scale(1.5)
+    transform: scale(1.3)
 }
 
 .overlay__popup__close {
     cursor: pointer;
     position: absolute;
     top: 0;
-    right: 0;
+    right: 10px;
     background: transparent;
     border: none;
 }
@@ -254,5 +274,836 @@ body {
     flex-grow: 1;
     gap: .5em;
 
-    min-width: 250px;
+    min-width: 200px;
+
+}
+
+/* Clase para desvanecer el contenido */
+.desvanecer {
+    opacity: 0;
+}
+
+/* Sección de inicio */
+.inicio {
+    display: flex;
+
+    position: relative;
+
+    height: 85vh;
+
+    max-width: 2000px;
+    margin: 0 auto;
+}
+
+.inicio__uno {
+    display: flex;
+
+    background-image: url('../media/Inicio_uno_Desktop.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    width: 100%;
+    max-width: 2000px;
+    margin: 0 auto;
+}
+
+.inicio__uno__container {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    text-align: center;
+
+    padding: 1em;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.inicio__dos__container, .inicio__tres__container {
+    display: flex;
+    align-items: center;
+    
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.inicio__uno__container__content , .inicio__dos__container__content, .inicio__tres__container__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.inicio__uno__container__content {
+    padding-bottom: 1em;
+}
+
+.inicio__dos__container__content, .inicio__tres__container__content {
+    width: 50%;
+}
+
+.inicio__dos {
+    display: flex;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    width: 100%;
+    max-width: 2000px;
+    margin: 0 auto;
+}
+
+.inicio__tres {
+    display: flex;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    width: 100%;
+    max-width: 2000px;
+    margin: 0 auto;
+}
+
+/* Clase para ocultar el contenido del banner principal y cambiarlo por los botones inferiores */
+.esconder {
+    display: none;
+}
+
+/* Botones de la seccion de inicio */
+.inicio__botones {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+
+    width: 100%;
+    position: absolute;
+
+    bottom: -1em;
+}
+
+.inicio__botones__boton {
+    border: solid 1.5px var(--color-rojo);
+    border-radius: 100%;
+    padding: .35em;
+    background-color: transparent;
+    color: var(--color-blanco);
+
+    cursor: pointer;
+}
+
+.inicio__botones__boton:hover {
+    background-color: rgba(196, 12, 12, 0.5);
+}
+
+/* Seccion de servicios */
+.servicios {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6em 1em;
+}
+
+.servicios__title {
+    view-timeline-name: --servicio;
+    view-timeline-axis: block;
+
+    animation-timeline: --servicio;
+    animation-name: show;
+    animation-range: entry 5% cover 50%;
+    animation-fill-mode: both;
+}
+
+.servicios__container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+.servicios__container__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    flex-basis: 0;
+    flex-grow: 1;
+    padding: .5em;
+
+    view-timeline-name: --servicio;
+    view-timeline-axis: block;
+
+    animation-timeline: --servicio;
+    animation-name: show;
+    animation-range: entry 30% cover 50%;
+    animation-fill-mode: both;
+
+    border-radius: 10%;
+    box-shadow: 5px 5px 15px #1100008c, -2px -2px 15px #eea7a78c;
+
+    min-width: 200px;
+}
+
+.servicios__container__content__imageweb {
+    background-image: url('../media/diseño-web.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    min-width: 150px;
+    min-height: 150px;
+
+    border-radius: 35px;
+}
+
+.servicios__container__content__imageapp {
+    background-image: url('../media/diseño_app.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    min-width: 150px;
+    min-height: 150px;
+
+    border-radius: 35px;
+}
+
+.servicios__container__content__imagescrum {
+    background-image: url('../media/metodologia_agil.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    min-width: 150px;
+    min-height: 150px;
+
+    border-radius: 35px;
+}
+
+.servicios__container__content__imagesql {
+    background-image: url('../media/bases_de_datos.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    min-width: 150px;
+    min-height: 150px;
+
+    border-radius: 35px;
+}
+
+.servicios__container__content__imageweb__hover, .servicios__container__content__imageapp__hover, .servicios__container__content__imagescrum__hover, .servicios__container__content__imagesql__hover {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 35px;
+}
+
+.servicios__container__content__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 50%;
+    
+    gap: 1em;
+
+    text-align: center;
+    text-wrap: wrap;
+}
+
+.hover {
+    display: none;
+}
+
+/* Sección sobre mí */
+.sobremi {
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2em 1em;
+}
+
+.sobremi__infopersonal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3em;
+}
+
+@keyframes show {
+    from {
+        opacity: 0; 
+        scale: 25%;
+    }
+    to {
+        opacity: 1;
+        scale: 100%;
+    }
+}
+
+.sobremi__infopersonal__imagen {
+    min-width: 200px;
+    min-height: 250px;
+    background-image: url(../media/Sobre_mí.jpg), url(../media/prueba.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-blend-mode: multiply;
+
+    view-timeline-name: --sobremi;
+    view-timeline-axis: block;
+
+    animation-timeline: --sobremi;
+    animation-name: show;
+    animation-range: entry 25% cover 50%;
+    animation-fill-mode: both;
+}
+
+.sobremi__infopersonal__info {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+
+    view-timeline-name: --sobremi;
+    view-timeline-axis: block;
+
+    animation-timeline: --sobremi;
+    animation-name: show;
+    animation-range: entry 25% cover 50%;
+    animation-fill-mode: both;
+}
+
+.sobremi__infopersonal__info__content {
+    display: flex;
+    align-items: center;
+    gap: .5em;
+}
+
+@keyframes boton {
+    from {border-left: 2px solid var(--color-rojo);}
+    to {border-right: 2px solid var(--color-rojo); color: var(--color-rojo);}
+}
+
+.sobremi__infopersonal__button {
+    background-color: var(--color-negro);
+    padding: .5em;
+    border: none;
+    border-left: solid 1px var(--color-rojo);
+
+    view-timeline-name: --sobremi;
+    view-timeline-axis: block;
+
+    animation-timeline: --sobremi;
+    animation-name: show;
+    animation-range: entry 25% cover 50%;
+    animation-fill-mode: both;
+}
+
+.sobremi__infopersonal__button:hover {
+    animation-name: boton;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+.sobremi__resume {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1em;
+    overflow: hidden;
+}
+
+.sobremi__resume__educacion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: 0;
+    flex-grow: 1;
+    gap: 1em;
+
+    transform: translateX(-300px);
+    transition: transform 1s ease-in;
+
+    min-width: 200px;
+}
+
+.sobremi__resume__educacion__info {
+    display: flex;
+    gap: 1em;
+
+    padding: .5em;
+}
+
+.sobremi__resume__experiencia {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: 0;
+    flex-grow: 1;
+    gap: 1em;
+
+    transform: translateX(300px);
+    transition: transform 1s ease-in;
+
+    min-width: 200px;
+}
+
+.sobremi__resume__experiencia__info {
+    display: flex;
+    gap: 1em;
+
+    padding: .5em;
+}
+
+.sobremi__habilidades {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
+.sobremi__habilidades__title {
+    transition: opacity 1.5s;
+}
+
+.sobremi__habilidades__container {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
+.sobremi__habilidades__container__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: 0;
+    flex-grow: 1;
+    gap: 1em;
+
+    position: relative;
+    z-index: 1;
+
+    transition: opacity 1.5s;
+
+    background: inherit;
+
+    min-width: 200px;
+    padding: .5em;
+}
+
+.sobremi__habilidades__container__content::before {
+    content: "";
+    position: absolute;
+    background: inherit;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 29, 29, 0.4);
+    border-radius: 20px;
+    box-shadow: inset 0 0 500px rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.sobremi__habilidades__container__content__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+
+    text-align: center;
+
+    height: 50%;
+}
+
+.sobremi__habilidades__container__content__info__titulo, .sobremi__habilidades__container__content__info__p {
+    color: var(--color-negro);
+}
+
+/* Seccion de portfolio */
+.portfolio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4em 1em;
+}
+
+.portfolio__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+.portfolio__container__content {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    flex-basis: 0;
+    flex-grow: 1;
+
+    width: 30vw;
+    height: 25vh;
+    min-width: 200px;
+}
+
+.bts {
+    background-image: url('../media/BTS-uno.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.agencia {
+    background-image: url('../media/Agencia-uno.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.ariel {
+    background-image: url('../media/Portfolio-arquitecto-uno.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.portfolio__container__content__text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: inherit;
+    position: relative;
+    z-index: 1;
+
+    width: 80%;
+    margin: .5em;
+    padding: .3em;
+}
+
+.portfolio__container__content__text::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(7px);
+    
+}
+
+.portfolio__container__content__text__titulo {
+    color: var(--color-negro);
+}
+
+.portfolio__container__content__text__boton {
+    color: var(--color-negro);
+    background-color: transparent;
+    border: none;
+}
+
+/* PopUp para mostrar los proyectos */
+.fondo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .5em;
+
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.fondo__proyecto {
+    flex-basis: 0;
+    flex-grow: 1;
+
+    min-width: 200px;
+}
+
+.btn {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.39);
+
+    color: black;
+    position: absolute;
+    top: 5%;
+}
+
+.cerrar {
+    display: none;
+}
+
+/* Seccion de fotografia */
+.fotografia {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 5em 1em;
+
+    text-align: center;
+}
+
+.fotografia__text {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.fotografia__grid {
+    columns: 5 200px;
+    column-gap: 1em;
+    
+}
+
+.fotografia__grid__image {
+    display: block;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 1em;
+}
+
+.fotografia__grid__image:hover {
+    scale: 1.05;
+}
+
+/* PopUp para mostrar las imagenes en grande de la seccion fotografia */
+.galeria {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.galeria__foto {
+    display: flex;
+    position: relative;
+    height: 70vh;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Sección de testimonios */
+.testimonios {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2em 1em;
+}
+
+.testimonios__titulo {
+    width: 100%;
+    text-align: center;
+}
+
+.testimonios__carrusel {
+    display: flex;
+    gap: 1em;
+
+    overflow: hidden;
+
+    padding: .5em;
+}
+
+.testimonios__carrusel__container {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+
+    border: 1px solid var(--color-rojo);
+    border-radius: 10px;
+
+    padding: .5em;
+
+    min-width: 200px;
+}
+
+.testimonios__carrusel__container:hover {
+    transform: scale(1.05);
+}
+
+.testimonios__carrusel__container__content {
+    display: flex;
+    gap: .5em;
+
+    width: 100%;
+}
+
+.testimonios__carrusel__container__content__info {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+/* Sección de contacto */
+.contacto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 3em 1em;
+}
+
+.contacto__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3em;
+}
+
+.contacto__container__mapa {
+    display: flex;
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+.contacto__container__content {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 0;
+    flex-grow: 1;
+    justify-content: center;
+    gap: 5em;
+
+    min-width: 200px;
+}
+
+.contacto__container__content__info{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.contacto__container__content__info__text {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    text-wrap: wrap;
+
+    min-width: 200px;
+}
+
+/* Media query para el menu hamburguesa de tablet y mobile */
+@media (max-width: 800px) {
+    .header__menu {
+        display: none;
+    }
+    .header__socialmedia {
+        display: none;
+    }
+
+    .header__hamburguesa {
+        display: flex;
+    }
+}
+
+/* Media query para ajustar la sección de inicio en tablet */
+@media (min-width: 480px) and (max-width: 720px) {
+    .inicio__uno {
+        background-image: url('../media/Inicio_uno_Tablet.jpg');
+    }
+}
+
+
+/* Media query para ajustar los tamaños de los textos a mobile */
+@media (max-width: 480px) {
+    .huno {
+        font-size: 1.5rem;
+    }
+
+    .hdos {
+        font-size: 1.25rem;
+    }
+
+    .htres {
+        font-size: 1.125rem;
+    }
+
+    .hcuatro {
+        font-size: .875rem;
+    }
+
+    .parrafo {
+        font-size: .75rem;
+    }
+
+    .link {
+        font-size: .75rem;
+    }
+
+    .galeria__foto {
+        height: auto;
+    }
+
+    .inicio {
+        height: 70vh;
+    }
+
+    .inicio__uno {
+        background-image: url('../media/Inicio_uno_Mobile.jpg');
+    }
+
+    .inicio__uno, .inicio__dos, .inicio__tres, .inicio__cuatro {
+        height: 50%;
+        width: 100%;
+        justify-content: center;
+        align-items: end;
+    }
+
+    .inicio__uno__container__content, .inicio__dos__container__content, .inicio__tres__container__content {
+        text-align: center;
+        width: 100%;
+
+        position: absolute;
+        bottom: 40px;
+    }
+
+    .inicio__uno__container__content {
+        padding: 0;
+    }
 }
