@@ -1,6 +1,7 @@
 /* Variables para el menu hamburguesa del responsive */
 const popup = document.querySelector('.overlay')
 const cerrar = popup.querySelector('.overlay__popup__close')
+let enlaces = popup.querySelectorAll('.overlay__popup__nav__ul__li__a')
 const hamburguesa = document.querySelector('.header__hamburguesa__a')
 /* Variables para la seccion de inicio */
 let botones = document.querySelectorAll('.inicio__botones__boton')
@@ -38,6 +39,12 @@ hamburguesa.addEventListener('click', () => {
 
 cerrar.addEventListener('click', () => {
     popup.classList.toggle('ocultar')
+})
+
+enlaces.forEach((enlace) => {
+    enlace.addEventListener('click', () => {
+        popup.classList.toggle('ocultar')
+    })
 })
 
 /* Evento para cambiar el contenido y la imagen de fondo de la seccion de inicio */
